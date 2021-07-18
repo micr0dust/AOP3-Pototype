@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        //jquery
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+        //popper
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous">
+        //bootstrap 4
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <title>AOP:III Pototype</title>
+    <style>
+         :target {
+            padding-top: 65px;
+            margin-top: -65px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div id="Introduction">
+            <p class="display-1"><i class="fas fa-info-circle"></i> Introduction</p>
+            <p>After dealing with some things, I now finally have time to develop a new Minecraft RTS game.</p>
+            <p>Below are some of my thoughts on the architecture and mechanics of this game.</p>
+        </div>
+        <div id="Resources">
+            <p class="display-1"><i class="fas fa-tree"></i> Resources</p>
+            <h1 id="Types">Types</h1>
+            <p>There are 3 resources in total: manpower, wood and gold.</p>
+            <h1 id="How-to-gather">How to gather?</h1>
+            <p>All our territories except forests and mines can provide manpower.</p>
+            <p>Wood and gold can be gathered in occupied forests and mines.</p>
+        </div>
+        <div id="Territory">
+            <p class="display-1"><i class="fas fa-map-marked-alt"></i> Territory</p>
+            <h1 id="Composition">Composition</h1>
+            <p>A territory is made up of 9X9 blocks.</p>
+            <img src="./img/territory.png">
+            <p>The entire map is expected to consist of 12X12(144) territories.</p>
+            <img src="./img/map.png">
+            <h1 id="Occupy">Occupy</h1>
+            <p>Occupying territory can increase income, prevent enemy expansion, and provide usable building space.</p>
+            <p>The territory must be connected to the command center to use it.</p>
+            <p>If it is not connected to the command center, the territory will not produce resources, and the buildings will not be able to be used and constructed.</p>
+            <img src="./img/occupied.png">
+            <p>(Maybe I can add a flag on it after occupied?)</p>
+            <h1 id="Build">Build</h1>
+            <p>Buildings can only be built on occupied territories, and different buildings have different functions.</p>
+            <p>If the building is destroyed by the enemy, the territory will also be lost.</p>
+            <img src="./img/building.png">
+            <h1 id="Lost-territory">Lost territory</h1>
+            <p>If the core of the territory is destroyed, the territory will be restored to its original state.</p>
+            <img src="./img/territory.png">
+        </div>
+        <div id="Territory">
+            <p class="display-1"><i class="fas fa-gamepad"></i> Control</p>
+            <h1 id="Chat-bar-control">Chat bar control</h1>
+            <p>This time the player will play the game from a bird's-eye view, so the player is in spectator mode and cannot control inventory.</p>
+            <p>Therefore, the control method will be changed to be determined by height.</p>
+            <img src="./img/control.png">
+            <h1 id="Building">Territory</h1>
+            <p></p>
+            <img src="./img/control building.png">
+            <h1 id="Units">Units</h1>
+            <p></p>
+            <img src="./img/units.jpg">
+        </div>
+        <div class="footer"></div>
+    </div>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">AOP:III Pototype</a>
+
+        <!-- Links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#Introduction">Introduction</a>
+            </li>
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Resources</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#Types">Types</a>
+                    <a class="dropdown-item" href="#How-to-gather">How to gather?</a>
+                </div>
+            </li>
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Territory</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#Composition">Composition</a>
+                    <a class="dropdown-item" href="#Occupy">Occupy</a>
+                    <a class="dropdown-item" href="#Build">Build</a>
+                    <a class="dropdown-item" href="#Lost-territory">Lost territory</a>
+                </div>
+            </li>
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Control</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#Chat-bar-control">Chat bar control</a>
+                    <a class="dropdown-item" href="#Building">Territory</a>
+                    <a class="dropdown-item" href="#Units">Units</a>
+                </div>
+            </li>
+
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a href="javascript:darkmode.toggle()">🌓</a>
+            </li>
+        </ul>
+    </nav>
+    <footer class="bg-light text-center text-lg-start">
+        <!-- Copyright -->
+        <div class="text-center p-3" id="year" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2020 Copyright:
+            <a class="text-dark" id="website" href="./index.html"></a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <script language="JavaScript">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+    <script>
+        const darkmode = new Darkmode();
+        const year = new Date().getFullYear();
+        document.getElementById('website').innerText = ": " + window.location.hostname;
+        document.getElementById('year').innerText = "© " + year + " Copyright";
+    </script>
+</body>
+
+</html>
